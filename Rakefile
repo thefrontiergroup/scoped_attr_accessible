@@ -6,7 +6,8 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name        = "scoped_attr_accessible"
     gem.summary     = %Q{Scoping for attr_accessible and attr_protected on ActiveModel objects.}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{scoped_attr_accessible is a plugin that makes it easy to scope the `attr_accessible` and `attr_protected`
+    methods on any library using ActiveModel's MassAssignmentSecurity module.}
     gem.email       = "team+darcy+mario@thefrontiergroup.com.au"
     gem.homepage    = "http://github.com/thefrontiergroup/scoped_attr_accessible"
     gem.authors     = ["Darcy Laycock", "Mario Visic"]
