@@ -12,4 +12,12 @@ module ScopedAttrAccessible
     end
   end
   
+  if defined?(Rails::Railtie)
+    class Railtie < Rails::Railtie
+      initializer "scoped_attr_accessible.setup" do
+        ScopedAttrAccessible.mixin!
+      end
+    end
+  end
+  
 end
