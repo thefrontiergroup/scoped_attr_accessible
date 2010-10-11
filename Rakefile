@@ -12,7 +12,13 @@ begin
     gem.homepage    = "http://github.com/thefrontiergroup/scoped_attr_accessible"
     gem.authors     = ["Darcy Laycock", "Mario Visic"]
     gem.add_dependency             "activemodel", "~> 3.0"
+    gem.add_dependency             "activesupport", "~> 3.0"
     gem.add_development_dependency "rspec",       "~> 2.0"
+    gem.add_development_dependency "rr"
+    gem.add_development_dependency "ruby-debug"
+    gem.add_development_dependency "rcov"
+    gem.add_development_dependency "ZenTest"
+
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
