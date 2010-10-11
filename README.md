@@ -57,7 +57,7 @@ To set it on a class level, simply do:
     
     User.current_sanitizer_scope = :admin
     # Or, dynamically:
-    User.current_sanitizer_scope = User.role.name.to_sym
+    User.current_sanitizer_scope = @user.role.name.to_sym
     
 This will be set Thread local. Also note you can get the current class-level scope:
 
