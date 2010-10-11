@@ -130,7 +130,6 @@ As an example, we could implement the following:
     
     end
 
-
 When combined, these all form a very flexible way to dynamically scope attribute accessible.
 
 ## Note on Patches/Pull Requests
@@ -140,6 +139,11 @@ When combined, these all form a very flexible way to dynamically scope attribute
 * Add tests for it. This is important so I don't break it in a future version unintentionally.
 * Commit, do not mess with rakefile, version, or history. (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
+
+## Contributors
+
+* Darcy Laycock
+* Mario Visic
 
 ## Copyright
 
