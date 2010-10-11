@@ -36,12 +36,12 @@ one of two methods:
     class User < ActiveRecord::Base
     
       # 1. using a scope detector
-      define_sanitizer_scope :admin do |object|
+      sanitizer_scope_recognizer :admin do |record, object|
         return true if object.is_a?(User) && object.has_role?(:admin)
       end
       
-      # 2. Use an scope convertor
-      define_sanitizer_scope_convertor do |object|
+      # 2. Use a scope converter
+      sanitizer_scope_converter do |record, object|
         return :owner if object.is_a?(User) && object.has_role?(:owner)
       end
       
