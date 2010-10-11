@@ -10,28 +10,31 @@ begin
     gem.email       = "team+darcy+mario@thefrontiergroup.com.au"
     gem.homepage    = "http://github.com/thefrontiergroup/scoped_attr_accessible"
     gem.authors     = ["Darcy Laycock", "Mario Visic"]
-    gem.add_development_dependency "rspec", ">= 2.0.0"
+    gem.add_dependency             "activemodel", "~> 3.0"
+    gem.add_development_dependency "rspec",       "~> 2.0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
-# require 'spec/rake/spectask'
-# Spec::Rake::SpecTask.new(:spec) do |spec|
-#   spec.libs << 'lib' << 'spec'
-#   spec.spec_files = FileList['spec/**/*_spec.rb']
-# end
-# 
-# Spec::Rake::SpecTask.new(:rcov) do |spec|
-#   spec.libs << 'lib' << 'spec'
-#   spec.pattern = 'spec/**/*_spec.rb'
-#   spec.rcov = true
-# end
-# 
-# task :spec => :check_dependencies
-# 
-# task :default => :spec
+require 'rspec/core'
+require 'rspec/core/rake_task'
+task :default => :spec
+
+desc "Run all specs in spec directory (excluding plugin specs)"
+RSpec::Core::RakeTask.new(:spec)
+
+namespace :spec do
+  desc "Run all specs with rcov"
+  RSpec::Core::RakeTask.new(:rcov) do |t|
+    t.rcov = true
+    t.pattern = "./spec/**/*_spec.rb"
+    t.rcov_opts = '--exclude spec/,/gems/,/Library/,/usr/,lib/tasks,.bundle,config,/lib/rspec/,/lib/rspec-'
+  end
+end
+
+
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
