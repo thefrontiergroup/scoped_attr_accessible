@@ -45,6 +45,18 @@ at all, it will allow all variables except those marked as protected.
 When declaring the scopes in the accessible / protected part, please note that they need to
 be symbol names for simplicity's sake.
 
+When you want to mark an attribute as accessible / protected in all scopes, you can use the `:all` scope.
+For example:
+
+    class User < ActiveRecord::Base
+      attr_accessible :a, :scope => :all
+      attr_accessible :c, :scope => :admin
+      attr_accessible :b, :scope => :owner
+    end
+
+Will allow `:admin` to access `:a` and `:c`, but not `:b`. Along the same lines, `:owner`
+can access `:a` and `:b`, but not `:c`.
+
 ### Setting the Scope
 
 Next, when you call methods that use mass assignment (e.g. `ActiveRecord::Base#attributes=`),

@@ -102,6 +102,26 @@ describe ScopedAttrAccessible::Sanitizer do
       end
     end
         
+    let :sanitizer_with_fallback do
+      ScopedAttrAccessible::Sanitizer.new.tap do |s|
+        s.make_accessible :a, :all
+        s.make_protected  :b, :all
+        s.make_accessible :c, :default
+        s.make_accessible :d, :admin
+      end
+    end
+
+    it 'should correctly handle sanitizers with fallback' do
+      sanitizer_with_fallback.should allow(:a, :default)
+      sanitizer_with_fallback.should allow(:a, :admin)
+      sanitizer_with_fallback.should_not allow(:b, :default)
+      sanitizer_with_fallback.should_not allow(:b, :admin)
+      sanitizer_with_fallback.should allow(:c, :default)
+      sanitizer_with_fallback.should_not allow(:c, :admin)
+      sanitizer_with_fallback.should_not allow(:d, :default)
+      sanitizer_with_fallback.should allow(:d, :admin)
+    end
+
     it 'should return true by default an empty list' do
       empty_sanitizer.should allow(:a)
       empty_sanitizer.should allow(:b)

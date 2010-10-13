@@ -64,7 +64,8 @@ module ScopedAttrAccessible
     def attribute_assignable_with_scope?(attribute, scope)
       attribute = attribute.to_s.gsub(/\(.+/, '')
       scope     = scope.to_sym
-      scope_protected, scope_accessible = @protected_attributes[scope], @accessible_attributes[scope]
+      scope_protected  = @protected_attributes[scope]  + @protected_attributes[:all]
+      scope_accessible = @accessible_attributes[scope] + @accessible_attributes[:all]
       if scope_protected.include? attribute
         return false
       elsif scope_accessible.include?('all') || scope_accessible.include?(attribute)
