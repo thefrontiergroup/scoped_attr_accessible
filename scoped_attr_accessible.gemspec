@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{scoped_attr_accessible}
-  s.version = "0.1.0"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Darcy Laycock", "Mario Visic"]
-  s.date = %q{2010-10-11}
+  s.date = %q{2010-10-13}
   s.description = %q{scoped_attr_accessible is a plugin that makes it easy to scope the `attr_accessible` and `attr_protected`
     methods on any library using ActiveModel's MassAssignmentSecurity module.}
   s.email = %q{team+darcy+mario@thefrontiergroup.com.au}
