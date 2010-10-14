@@ -155,7 +155,7 @@ describe ScopedAttrAccessible::ActiveModelMixin do
     it 'should fallback to default if no scope is set' do
       subject_instance.current_sanitizer_scope = nil
       subject.current_sanitizer_scope = nil
-      subject_instance.current_sanitizer_scope.should == :default
+      subject_instance.current_sanitizer_scope.should == nil
     end
 
     it 'should let you assign the instance level scope' do

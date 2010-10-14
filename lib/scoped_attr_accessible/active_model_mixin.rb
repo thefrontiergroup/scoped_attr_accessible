@@ -85,7 +85,7 @@ module ScopedAttrAccessible
     module InstanceMethods
 
       def current_sanitizer_scope
-        @current_sanitizer_scope || self.class.current_sanitizer_scope || :default
+        @current_sanitizer_scope || self.class.current_sanitizer_scope
       end
 
       def current_sanitizer_scope=(value)

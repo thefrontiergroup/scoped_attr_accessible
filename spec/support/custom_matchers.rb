@@ -7,7 +7,7 @@ module CustomMatchers
   
     def matches?(target)  
       @target_attributes = target.keys.map(&:to_s)
-      @target_attributes == @attributes
+      (@target_attributes & @attributes) == @target_attributes
     end  
   
     def failure_message_for_should  
