@@ -15,6 +15,9 @@ To use, just add to any application using ActiveModel. In Rails 3, this is a sim
     
 To our Gemfile and running `bundle install`.
 
+If you encounter issues, please make sure you add it right after activerecord or rails - Otherwise, you might
+encounter issues where the process it uses to hook into ActiveModel fails.
+
 ## Usage
 
 With it enabled, your application should continue to work as usual with classic `attr_accessible` and `attr_protected`.
@@ -108,7 +111,7 @@ match. e.g:
     class User < ActiveRecord::Base
       
       sanitizer_scope_recognizer :admin do |record, scope_value|
-        scope_value.is_a?(User) && user.admin?
+        scope_value.is_a?(User) && scope_value.admin?
       end
       
       sanitizer_scope_recognizer :owner do |record, scope_value|
