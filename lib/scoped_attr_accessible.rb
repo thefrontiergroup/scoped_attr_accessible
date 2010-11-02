@@ -12,6 +12,24 @@ module ScopedAttrAccessible
     end
   end
   
+  GLOBAL_SCOPE_KEY = :_scoped_attr_accessible_sanitizer_scope
+  
+  def self.current_sanitizer_scope
+    Thread.current[GLOBAL_SCOPE_KEY]
+  end
+  
+  def self.current_sanitizer_scope=(value)
+    Thread.current[GLOBAL_SCOPE_KEY] = value
+  end
+  
+  def self.with_sanitizer_scope(scope)
+    old_sanitizer_scope = self.current_sanitizer_scope
+    self.current_sanitizer_scope = scope
+    yield if block_given?
+  ensure
+    self.current_sanitizer_scope = old_sanitizer_scope
+  end
+  
   if defined?(Rails::Railtie)
     class Railtie < Rails::Railtie
       initializer "scoped_attr_accessible.setup" do

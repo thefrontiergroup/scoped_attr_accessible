@@ -152,6 +152,17 @@ describe ScopedAttrAccessible::ActiveModelMixin do
       subject_instance.current_sanitizer_scope.should == :class_level
     end
     
+    it 'should fallback to the global scope if others aren\'t set' do
+      subject_instance.current_sanitizer_scope = nil
+      subject.current_sanitizer_scope = nil
+      called = false
+      ScopedAttrAccessible.with_sanitizer_scope :global_scope do
+        called = true
+        subject_instance.current_sanitizer_scope.should == :global_scope
+      end
+      called.should be_true
+    end
+    
     it 'should fallback to default if no scope is set' do
       subject_instance.current_sanitizer_scope = nil
       subject.current_sanitizer_scope = nil
