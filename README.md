@@ -12,7 +12,7 @@ now get the joy of scoped access restrictions across any ORM built on ActiveMode
 To use, just add to any application using ActiveModel. In Rails 3, this is a simple job of adding:
 
     gem 'scoped_attr_accessible'
-    
+
 To our Gemfile and running `bundle install`.
 
 If you encounter issues, please make sure you add it right after activerecord or rails - Otherwise, you might
@@ -26,21 +26,21 @@ When in use, you can simply pass the `:scope` option in your declaration to decl
 For example,
 
     class User < ActiveRecord::Base
-    
+
       # All attributes are accessible for the admin scope.
       attr_accessible :all, :scope => :admin
-      
+
       # The default scope can only access a and b.
       attr_accessible :a, :b
-      
+
       # Make both :c and :d accessible for owners and the default scope
       attr_accessible :c, :d, :scope => [:owner, :default]
-      
+
       # Also, it works the same with attr_protected!
       attr_protected :n, :scope => :default
-    
+
     end
-    
+
 If both `attr_accessible` and `attr_protected` are used on a given scope, attributes
 declared in `attr_protected` take precedence. Also, If `attr_accessible` isn't called for a scope
 at all, it will allow all variables except those marked as protected.
@@ -69,15 +69,15 @@ user intervention this scope is simply `:default`.
 To set the scope, you can do so on a class an instance level with instance-level taking precedence.
 
 To set it on a class level, simply do:
-    
+
     User.current_sanitizer_scope = :admin
     # Or, dynamically:
     User.current_sanitizer_scope = @user.role.name.to_sym
-    
+
 This will be set Thread local. Also note you can get the current class-level scope:
 
     p User.current_sanitizer_scope # => nil by default
-    
+
 Or, temporarily switch it out, resetting it afterwards:
 
     p User.current_sanitizer_scope
@@ -92,7 +92,7 @@ You can also declare this on the instance level, e.g:
     user.current_sanitizer_scope = :admin
     # Or, more complex:
     user.current_sanitizer_scope = "something-else"
-    
+
 ### Complex Scoping
 
 Although the scope on a given accessible / protected declaration must be a symbol,
@@ -109,23 +109,23 @@ match. e.g:
 
     # Reeopen the class
     class User < ActiveRecord::Base
-      
+
       sanitizer_scope_recognizer :admin do |record, scope_value|
         scope_value.is_a?(User) && scope_value.admin?
       end
-      
+
       sanitizer_scope_recognizer :owner do |record, scope_value|
         scope_value.is_a?(User) && scope_value == record
       end
-    
+
     end
-    
+
 In this example, we could simply do:
 
     user = User.find(params[:id])
     user.current_sanitizer_scope = current_user
     user.update_attributes params[:user]
-    
+
 And it would automatically set the scope to :owner / :admin when sanitizing the attributes.
 
 The second and more flexible option is scope convertors - they're given the same information (e.g.
@@ -137,18 +137,18 @@ As an example, we could implement the following:
 
     # Reeopen the class
     class User < ActiveRecord::Base
-      
+
       sanitizer_scope_converter do |record, scope_value|
         return user.role.name.to_sym if scope_value.is_a?(User)
         return scope_value.user if scope_value.is_a?(UserSession)
       end
-    
+
     end
 
 When combined, these all form a very flexible way to dynamically scope attribute accessible.
 
 ## Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a future version unintentionally.
