@@ -1,7 +1,7 @@
 source 'http://rubygems.org/'
 
-gem 'activesupport', '~> 3.0.0'
-gem 'activemodel',   '~> 3.0.0'
+gem 'activesupport', '~> 6.0.0'
+gem 'activemodel',   '~> 6.0.0'
 
 group :development do
   gem 'rspec', '~> 2.0'
