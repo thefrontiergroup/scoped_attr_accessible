@@ -2,16 +2,20 @@ GEM
   remote: http://rubygems.org/
   specs:
     ZenTest (4.4.0)
-    activemodel (3.0.0)
-      activesupport (= 3.0.0)
-      builder (~> 2.1.2)
-      i18n (~> 0.4.1)
-    activesupport (3.0.0)
-    builder (2.1.2)
+    activemodel (7.0.4.1)
+      activesupport (= 7.0.4.1)
+    activesupport (7.0.4.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
     columnize (0.3.1)
+    concurrent-ruby (1.1.10)
     diff-lcs (1.1.2)
-    i18n (0.4.1)
+    i18n (1.12.0)
+      concurrent-ruby (~> 1.0)
     linecache (0.43)
+    minitest (5.17.0)
     rcov (0.9.9)
     rr (1.0.0)
     rspec (2.0.0)
@@ -29,14 +33,16 @@ GEM
       ruby-debug-base (~> 0.10.3.0)
     ruby-debug-base (0.10.3)
       linecache (>= 0.3)
+    tzinfo (2.0.5)
+      concurrent-ruby (~> 1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   ZenTest
-  activemodel (~> 3.0.0)
-  activesupport (~> 3.0.0)
+  activemodel (~> 7.0.4)
+  activesupport (~> 7.0.4)
   rcov
   rr
   rspec (~> 2.0)
